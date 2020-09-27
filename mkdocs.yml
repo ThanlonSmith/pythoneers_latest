@@ -1,0 +1,107 @@
+site_name: PYTHONEERS
+# 设置站点的规范URL。这将添加带有规范URL的链接标记到生成的HTML标头。
+site_url: http://pythoneers.cn
+site_author: Erics
+# 站点描述
+site_description: 'PYTHONEERS是专为以Python为首要编程语言的，计划从事或已经从事Python工作的工程师、技术专家、科研人员，以及对Python感兴趣的任何人群免费提供文档学习、知识共享的平台。PYTHONEERS将永久致力于维护国内Python生态环境的发展。'
+#copyright: docs.xiaolangren.cn
+site_dir: site
+docs_dir: 'docs'
+extra_css:
+  - css/nav.css
+  - css/public.css
+#链接的样式
+use_directory_urls: false # 默认是true
+extra_javascript:
+  - js/main.js
+  #  - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+#  - js/busuanzi.pure.mini.js
+  - js/gotop.js
+  - js/baiducount.js
+plugins: []
+#repo_url: https://github.com/example/repository/
+extra:
+  version: 0.10.0
+#在每个页面上提供指向您的存储库（GitHub，Bitbucket，GitLab，...）的链接。
+repo_url: null
+#设置后，在每个页面上提供指向存储库的链接的名称。默认值： 'GitHub', 'Bitbucket' or 'GitLab'， 如果repo_url不能匹配这些域名，则使用来自repo_url的域名。
+repo_name: 'GitHub' # 默认
+remote_branch: gh-pages # 默认
+#当使用gh-deploy部署到Github Pages时，设置要推送到的远程名称。 可以通过gh-deploy中的命令行选项覆盖此选项。
+remote_name: origin
+dev_addr: '127.0.0.1:6001'
+#设置版权信息以包含在主题的文档中
+copyright: null
+#设置Google Analytics跟踪配置。
+#google_analytics: ['UA-36723568-3', 'mkdocs.org']
+nav:
+  #  - 主页: index.md
+  - Python:
+      - Python基础入门: python/python-basis.md
+      - Python进阶: python/python-advance.md
+      - Python高级: python/python-senior.md
+#      - Python零碎知识点整理: python/python3-general-knowledge.md
+      - 内置模块与第三方模块: python/module.md
+      #      - 第三方模块: python/third-party.md
+      #      - 面试题题解: python/interview.md
+      - 数据结构与算法: python/algorithm.md
+      - 设计模式: python/design-pattern.md
+      #      - 算法基础: python/algorithm.md
+      - Python面试题: python/interviews-python.md
+      - 网络相关面试题: python/interviews-network.md
+      - Leetcode算法: python/leetcode-algorithm.md
+      - Leetcode数据库: python/leetcode-db.md
+      - Leetcode多线程: python/leetcode-multithreading.md
+      - 剑指Offer: python/nowcoder-sword-offer.md
+  - Python Web:
+      - Django: python-web/django.md
+      - Django Rest Framework: python-web/drf.md
+      - Flask: python-web/flask.md
+      - Celery: python-web/celery.md
+      - MySQL: python-web/mysql.md
+      - Flask面试题: python-web/interviews-flask.md
+      - Django面试题:  python-web/interviews-django.md
+      - MySQL面试题: python-web/interviews-mysql.md
+      - Redis面试题: python-web/interviews-redis.md
+      - Flask项目实战: python-web/project-flask.md
+      - Django项目实战: python-web/project-django.md
+#      - 代码统计系统(Flask): python-web/codecount.md
+#      - 在线课程学习系统(Django): python-web/course-learn.md
+#      - 社会活动问卷调查系统(DRF+Vue): python-web/social-activities-questionnaire.md
+#      - 个人网站系统(DRF+Vue): python-web/my-site.md
+#      - 面试题题解: python-web/interview.md
+  - Python GUI:
+      - PyQt5: gui/pyqt5.md
+  - 网络爬虫:
+      #      - Requests: web-crawler/requests.md
+      - Scrapy: web-crawler/scrapy.md
+  - 数据分析:
+      - NumPy: data-analysis/numpy.md
+      - Pandas: data-analysis/pandas.md
+      - Matplotlib: data-analysis/matplotlib.md
+  - 计算机视觉:
+      - OpenCV: computer-vision/opencv.md
+  - 机器学习:
+      #      - 机器学习中的数学: machine-learning/math.md
+      #      - 机器学习中的算法: machine-learning/machine-learning-algorithm.md
+      - 机器学习与量化交易: machine-learning/quantitative-trading.md
+  - 深度学习: deep-learning/deep-learning.md
+      #      - CNN: deep-learning/tensorflow.md
+      #      - RNN: deep-learning/tensorflow.md
+      #      - TensorFlow: deep-learning/tensorflow.md
+markdown_extentions:
+  - admonition
+theme:
+  name: mkdocs
+  custom_dir: custom_theme
+  # JavaScript库在代码块中突出显示源代码。 默认值：True。
+  #  highlightjs: true
+  #  hljs_languages:
+  #    - yaml
+  #    - rust
+  #    - python
+  shortcuts:
+    help: 191    # ?
+    next: 78     # n
+    previous: 80 # p
+    search: 83   # s

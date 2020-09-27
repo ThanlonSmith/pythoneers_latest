@@ -1,0 +1,9 @@
+<span class="github-btn github-stargazers pull-right">
+<a class="gh-btn" href="https://github.com/ThanlonSmith/Data-Structure-Python3" rel="noopener noreferrer" target="_blank" aria-label="Star encode/django-rest-framework on GitHub">
+    <span class="gh-ico" aria-hidden="true"></span>
+    <span class="gh-text">Star</span>
+</a>
+<a class="gh-count" href="https://github.com/encode/django-rest-framework/stargazers" rel="noopener noreferrer" target="_blank" aria-hidden="true"></a>
+</span>
+
+<hr>

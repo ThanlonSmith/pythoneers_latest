@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block footer %}
+<!--    <hr>-->
+<!--{% if config.copyright %}-->
+<!--<p>{{ config.copyright }}</p>-->
+<!--{% endif %}-->
+<p>Copyright © 2020-2022 <a href="https://pythoneers.cn/">pythoneers.cn</a> All Rights Reserved.</p>
+<p>
+    <a href="https://beian.miit.gov.cn" target="_blank" style="color:#555;">豫ICP备19037971号-2</a><a target="_blank"></a>
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279280889'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1279280889%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+<!--    <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>-->
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<!--    <script async src="{{ base_url }}/js/somelib.js"></script>-->
+<script data-ad-client="ca-pub-6937898095875663" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+{% endblock %}
+
+{% block site_meta %}
+{{ super() }}
+<!--sougou-->
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
+<meta name="sogou_site_verification" content="atcH4bxi4f"/>
+<!--!sougou-->
+{% endblock %}
