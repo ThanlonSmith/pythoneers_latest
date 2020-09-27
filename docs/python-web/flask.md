@@ -903,7 +903,7 @@ if __name__ == '__main__':
 #### FLask蓝图
 <hr>
 
-##### 1. 蓝图（一）
+##### 1. 蓝图 ( 一 )
 实际项目中，需要进行项目目录结构的划分，蓝图就是用来帮助开发者进行目录结构的划分，下面是目录结构划分的几个步骤。
 
 ( 1 ) 新建项目，在项目下新建一个和项目名同名的目录
@@ -993,16 +993,16 @@ def login():
 这时候就可以访问模板了。
 <hr>
 
-##### 2. 蓝图（二）
+##### 2. 蓝图 ( 二 )
 ( 1 ) 自定义静态文件和模板的路径
-```py
+```python
 admin_bp = Blueprint('admin_bp', __name__,template_folder='xxx')
 @admin_bp.route('/login')
 def login():
     return render_template('login.html')
 ```
 注意：蓝图 <font>优先</font> 去 templates 去找 loging.html，找不到去 xxx 中找。当然静态文件也是可以指定的：
-```py
+```python
 admin_bp = Blueprint('admin_bp', __name__,template_folder='xxx',static_folder='xxxx')
 
 @admin_bp.route('/login')
@@ -1010,7 +1010,7 @@ def login():
     return render_template('login.html')
 ```
 ( 2 ) 为某一个蓝图地址加上前缀
-```py
+```python
 def create_app():
     app = Flask(__name__)
     # 注册蓝图
@@ -1025,7 +1025,7 @@ def create_app():
 ( 3 ) 为所有蓝图加上 <kbd>@before_request</kbd>
 
 **`__ init __.py`**：
-```py
+```python
 from flask import Flask
 from .views.admin import admin_bp
 from .views.home import home_bp
@@ -1045,7 +1045,7 @@ def create_app():
 ( 4 ) 为指定的蓝图加上 <kbd>@before_request</kbd>
 
 **`admin.py`**：
-```py
+```python
 from flask import Blueprint, render_template
 admin_bp = Blueprint('admin_bp', __name__, template_folder='xxx', static_folder='xxxx')
 
@@ -3028,12 +3028,12 @@ def index():
 <hr>
 
 ##### 3. template_global 与 template_filter
-
 模板中有介绍，在这里不赘述。
+
 <hr>
 
-##### 4. errorhandler（应用比较广）
-```py
+##### 4. errorhandler
+```python
 @app.errorhandler(404)
 def page_not_found(arg):
     return 'This page does not exit'
