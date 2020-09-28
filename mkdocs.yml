@@ -84,22 +84,26 @@ nav:
   - 机器学习:
       #      - 机器学习中的数学: machine-learning/math.md
       #      - 机器学习中的算法: machine-learning/machine-learning-algorithm.md
+#      - Sklearn:
       - 机器学习与量化交易: machine-learning/quantitative-trading.md
-  - 深度学习: deep-learning/deep-learning.md
+
+  - 深度学习:
       #      - CNN: deep-learning/tensorflow.md
       #      - RNN: deep-learning/tensorflow.md
-      #      - TensorFlow: deep-learning/tensorflow.md
+      - TensorFlow: deep-learning/tensorflow.md
 markdown_extentions:
   - admonition
 theme:
   name: mkdocs
   custom_dir: custom_theme
   # JavaScript库在代码块中突出显示源代码。 默认值：True。
-  #  highlightjs: true
-  #  hljs_languages:
-  #    - yaml
-  #    - rust
-  #    - python
+  highlightjs: true
+  hljs_languages:
+      - yaml
+      - rust
+      - python
+      - shell
+      - shell script
   shortcuts:
     help: 191    # ?
     next: 78     # n
