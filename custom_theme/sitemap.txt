@@ -29,4 +29,4 @@ http://pythoneers.cn/data-analysis/pandas.html
 http://pythoneers.cn/data-analysis/matplotlib.html
 http://pythoneers.cn/computer-vision/opencv.html
 http://pythoneers.cn/machine-learning/quantitative-trading.html
-http://pythoneers.cn/deep-learning/deep-learning.html
+http://pythoneers.cn/deep-learning/tensorflow.html
