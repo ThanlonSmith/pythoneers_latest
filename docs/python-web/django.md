@@ -2799,7 +2799,7 @@ def index(request):
 创建用户表和用户类型表，用户类型表是用户表的父表，用户表是用户类型的字表。
 
 **`models.py:`**
-```py
+```python
 class UserType(models.Model):
     """
     用户类型表
@@ -2815,7 +2815,7 @@ class UserInfo(models.Model):
     ut = models.ForeignKey('UserType', on_delete=models.CASCADE)
 ```
 **`views.py:`**：
-```py
+```python
 def user(request):
     models.UserType.objects.create(title='普通用户')
     models.UserType.objects.create(title='VIP用户')
@@ -2824,7 +2824,7 @@ def user(request):
     return HttpResponse('...')
 ```
 正向连表查的是 UserInfo 表，是通过 UserInfo 表的外健 ut 字段来获取父表与之对应的字段。<font>一个用户只有一个用户类型</font>。
-```py
+```python
 def user(request):
     result = models.UserInfo.objects.all()
     for obj in result:
@@ -2837,9 +2837,11 @@ def user(request):
     """
     return HttpResponse('...')
 ```
+<hr>
+
 ##### 7. 反向连表操作
 反向连表查询的父表 UserType，通过父表隐藏的字段来获取子表 UserInfo 的字段，这个“隐藏”的字段的格式是 **`表名_set`**。<font>一个用户类型下可以有多个用户</font>。
-```py
+```python
 def user(request):
 	# 一个用户类型下可以有多个用户
     # obj = models.UserType.objects.first()
@@ -2861,7 +2863,7 @@ def user(request):
 如果是查 Userinfo 的所有字段，使用反向连表和正向连表都能查询到结果，但是我们发现反向连表的时间复杂度比正向连表要大。
 
 反向连表可以获取用户类型下对应的所有用户，还可以通过过滤这些用户：
-```py
+```python
 def user(request):
     obj = models.UserType.objects.first()
     print(obj.id, obj.title, obj.userinfo_set.filter(name='Thanlon'))
@@ -2877,7 +2879,7 @@ def user(request):
 
 ##### 8. 获取数据的三种方式
 第一种方式，获取的是对象：
-```py
+```python
 def user(request):
     result = models.UserType.objects.all()
     print(result)  # [obj,obj,obj,,,]
@@ -2894,7 +2896,7 @@ def user(request):
     return HttpResponse('...')
 ```
 第二种方式，获取的是字典：
-```py
+```python
 def user(request):
     # 获取所有字段
     # result = models.UserInfo.objects.values()
@@ -2914,7 +2916,7 @@ def user(request):
     return HttpResponse('...')
 ```
 第三种方式，获取的是元组：
-```py
+```python
 def user(request):
     # 获取所有字段
     # result = models.UserInfo.objects.values_list()
@@ -2932,7 +2934,722 @@ def user(request):
     """
     return HttpResponse('...')
 ```
-三种方式都支持跨表操作，只不过对象的方式跨表是在循环对象的时候，而字典和元组的方式是在查询的的时候。
+<font>三种方式都支持跨表操作</font>，只不过对象的方式跨表是在循环对象的时候，而字典和元组的方式是在查询的的时候。
+
+<hr>
+
+##### 9. 查询相关的关键字
+( 1 ) all
+
+获取所有的数据对象，参数使用参考：
+```python
+def all(self):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+
+( 2 ) filter
+
+条件查询，条件也可以是字典类型，参数使用参考：
+```python
+def filter(self, *args, **kwargs):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    # result = models.UserInfo.objects.filter(id__gt=1)
+    # result = models.UserInfo.objects.filter(id__lt=1)
+    # result = models.UserInfo.objects.filter(id__gte=1)
+    result = models.UserInfo.objects.filter(id__lte=1)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE `app01_userinfo`.`id` <= 1
+    """
+    result = models.UserInfo.objects.filter(id__in=[1, 2, 3])
+    """
+    print(result.query)
+    SELECT "app01_userinfo"."id", "app01_userinfo"."name", "app01_userinfo"."age", "app01_userinfo"."ut_id" 
+    FROM "app01_userinfo" 
+    WHERE "app01_userinfo"."id" IN (1, 2, 3)
+    """
+    result = models.UserInfo.objects.filter(id__range=[1, 3])
+    """
+    print(result.query)
+    SELECT "app01_userinfo"."id", "app01_userinfo"."name", "app01_userinfo"."age", "app01_userinfo"."ut_id" 
+    FROM "app01_userinfo" 
+    WHERE "app01_userinfo"."id" BETWEEN 1 AND 3
+    """
+    result = models.UserInfo.objects.filter(name__startswith='xxx')
+    """
+    print(result.query)
+    SELECT "app01_userinfo"."id", "app01_userinfo"."name", "app01_userinfo"."age", "app01_userinfo"."ut_id" 
+    FROM "app01_userinfo" 
+    WHERE "app01_userinfo"."name" LIKE xxx%
+    """
+    result = models.UserInfo.objects.exclude(id=1)
+    """
+    print(result.query)
+    SELECT "app01_userinfo"."id", "app01_userinfo"."name", "app01_userinfo"."age", "app01_userinfo"."ut_id" 
+    FROM "app01_userinfo" 
+    WHERE NOT ("app01_userinfo"."id" = 1)
+    """
+    result = models.UserInfo.objects.filter(name__endswith='xxx')
+    """
+    print(result.query)
+    SELECT "app01_userinfo"."id", "app01_userinfo"."name", "app01_userinfo"."age", "app01_userinfo"."ut_id" 
+    FROM "app01_userinfo" 
+    WHERE "app01_userinfo"."name" LIKE %xxx
+    """
+    result = models.UserInfo.objects.filter(id=1, name='thanlon')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (`app01_userinfo`.`id` = 1 AND `app01_userinfo`.`name` = thanlon)
+    """
+    condition = {
+        'id': 1,
+        'name': 'thanlon'
+    }
+    result = models.UserInfo.objects.filter(**condition)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (`app01_userinfo`.`id` = 1 AND `app01_userinfo`.`name` = thanlon)
+    """
+    return HttpResponse()
+```
+
+( 3 ) order_by
+
+order_by 用于排序，参数使用参考：
+```python
+def order_by(self, *field_names):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    # 1、按照id从小到大排序
+    result = models.UserInfo.objects.all().order_by('id')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    ORDER BY `app01_userinfo`.`id` ASC
+    """
+    # 2、按照id从小到大排序
+    result = models.UserInfo.objects.all().order_by('-id')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    ORDER BY `app01_userinfo`.`id` DESC
+    """
+    # 3、按照id从大到小排序,如果有重复的按照name从小到大排序
+    result = models.UserInfo.objects.all().order_by('-id', 'name')
+    print(result.query)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    ORDER BY `app01_userinfo`.`id` DESC, `app01_userinfo`.`name` ASC
+    """
+    return HttpResponse()
+```
+
+( 4 ) reverse
+
+reverse 用来对查询结果进行倒序排序，**`只有在使用 order_by 之后才会有用`**，参数使用参考：
+```python
+def reverse(self):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().reverse()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    result = models.UserInfo.objects.all().reverse().order_by('id')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    ORDER BY `app01_userinfo`.`id` DESC
+    """
+    result = models.UserInfo.objects.all().order_by('id').reverse()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    ORDER BY `app01_userinfo`.`id` DESC
+    """
+    return HttpResponse()
+```
+( 5 ) defer
+
+映射中排除某列数据，id 列不可以去除，参数:
+```python
+def defer(self, *fields):
+	pass
+```
+使用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    # id列不可使用defer来去除
+    result = models.UserInfo.objects.all().defer('id','name','age')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`ut_id` FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+
+( 6 ) only
+
+只取某些列，参数使用参考：
+```python
+def only(self, *fields):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().only('id','age')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`age` 
+    FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+
+( 7 ) annotate
+
+annotate 可以实现聚合分组查询，参数使用参考：
+```python
+def annotate(self, *args, **kwargs):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+
+def user_list(request):
+    result = models.UserInfo.objects.values('ut_id')
+    result = models.UserInfo.objects.values('ut_id').annotate()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`ut_id` FROM `app01_userinfo`
+    """
+    from django.db.models import Count, Min, Max, F, Q
+    result = models.UserInfo.objects.values('ut_id').annotate(xxx=Count('id'))
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`ut_id`, COUNT(`app01_userinfo`.`id`) AS `xxx` 
+    FROM `app01_userinfo` 
+    GROUP BY `app01_userinfo`.`ut_id` 
+    ORDER BY NULL
+    """
+    result = models.UserInfo.objects.values('ut_id').annotate(xxx=Count('id')).filter(xxx__gt=2)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`ut_id`, COUNT(`app01_userinfo`.`id`) AS `xxx` 
+    FROM `app01_userinfo` GROUP BY `app01_userinfo`.`ut_id` 
+    HAVING COUNT(`app01_userinfo`.`id`) > 2 
+    ORDER BY NULL
+    """
+    result = models.UserInfo.objects.filter(id__gt=2).values('ut_id').annotate(xxx=Count('id')).filter(xxx__gt=2)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`ut_id`, COUNT(`app01_userinfo`.`id`) AS `xxx` 
+    FROM `app01_userinfo` 
+    WHERE `app01_userinfo`.`id` > 2 
+    GROUP BY `app01_userinfo`.`ut_id` 
+    HAVING COUNT(`app01_userinfo`.`id`) > 2 
+    ORDER BY NULL
+    """
+    return HttpResponse()
+```
+
+( 8 ) F 
+
+F 会认为是数据库原有的值，参数：
+```python
+
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    from django.db.models import F
+    # 不可用来更新id的值，可能是id是自动递增的原因
+    result = models.UserInfo.objects.all().update(age=F("age") + 1)
+    print(result)  # 更新的结果数
+    return HttpResponse()
+```
+
+( 9 ) Q 
+
+Q 是用来构造复杂的查询条件，有两种适用方式，一种是 **`对象方式`**：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    from django.db.models import Q
+    result = models.UserInfo.objects.filter(Q(id__gt=1))
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE `app01_userinfo`.`id` > 1
+    """
+    result = models.UserInfo.objects.filter(Q(id__gt=1) & Q(name='thanlon'))
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (`app01_userinfo`.`id` > 1 AND `app01_userinfo`.`name` = thanlon)
+    """
+    result = models.UserInfo.objects.filter(Q(id__gt=1) | Q(name='thanlon'))
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (`app01_userinfo`.`id` > 1 OR `app01_userinfo`.`name` = thanlon)
+    """
+    return HttpResponse()
+```
+另一种是 **`方法`** 的方式：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    from django.db.models import Q
+    q1 = Q()
+    q1.connector = 'OR'
+    q1.children.append(('id__gt', 1))
+    q1.children.append(('id__lt', 5))
+    print(q1)  # (OR: ('id__gt', 1), ('id__lt', 5))
+    print(q1.children)  # [('id__gt', 1), ('id__lt', 5)]
+    result = models.UserInfo.objects.filter(q1)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (`app01_userinfo`.`id` > 1 OR `app01_userinfo`.`id` < 5)
+    """
+
+    q2 = Q()
+    q2.connector = 'AND'
+    q2.children.append(('age__gt', 16))
+    q1.add(q2, 'OR')
+    result = models.UserInfo.objects.filter(q1)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (`app01_userinfo`.`id` > 1 OR `app01_userinfo`.`id` < 5 OR `app01_userinfo`.`age` > 16)
+    """
+    
+    q3 = Q()
+    q3.add(q1, 'AND')
+    q3.add(q2, 'AND')
+    result = models.UserInfo.objects.filter(q3)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE ((`app01_userinfo`.`id` > 1 OR `app01_userinfo`.`id` < 5 OR `app01_userinfo`.`age` > 16) AND `app01_userinfo`.`age` > 16)
+    """
+    return HttpResponse()
+```
+
+( 10 ) extra
+
+extra 可以构造额外的查询条件或者映射，如子查询等，参数：
+```python
+def extra(self, select=None, where=None, params=None, tables=None,
+              order_by=None, select_params=None):
+	pass     
+```
+子查询：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().extra()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    result = models.UserInfo.objects.all().extra(select={'n': 'select count(1) from app01_usertype'})
+    """
+    print(result.query)
+    SELECT (select count(1) from app01_usertype) AS `n`, `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    result = models.UserInfo.objects.all().extra(select={'n': 'select count(1) from app01_usertype where id>%s'},
+                                                 select_params=[1])
+    """
+    print(result.query)
+    SELECT (select count(1) from app01_usertype where id>1 and id<3) AS `n`, `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    result = models.UserInfo.objects.all().extra(
+        select={'n': 'select count(1) from app01_usertype where id>%s and id<%s'},
+        select_params=[1, 3])
+    """
+    print(result.query)
+    SELECT (select count(1) from app01_usertype where id>1 and id<3) AS `n`, 
+    `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    result = models.UserInfo.objects.all().extra(
+        select={
+            'n': 'select count(1) from app01_usertype where id>%s and id<%s',
+            'm': 'select count(1) from app01_usertype where id>%s and id<%s'
+        },
+        select_params=[1, 2, 3, 4])
+    """
+    for obj in result:
+        print(obj.name, obj.id, obj.n, obj.m)
+    print(result.query)
+    SELECT 
+    (select count(1) from app01_usertype where id>1 and id<2) AS `n`, 
+    (select count(1) from app01_usertype where id>3 and id<4) AS `m`, 
+    `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+根据条件查询，与 filter 功能是相同的：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().extra(where=['id=1', 'name=thanlon'])
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (id=1) AND (name=thanlon)
+    """
+    result = models.UserInfo.objects.all().extra(where=['id=1 or id = %s', "name='%s'"], params=[2, 'thanlon'])
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    WHERE (id=1 or id = 2) AND (name='thanlon')
+    """
+    return HttpResponse()
+```
+在原来的基础上增加查询范围：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().extra(tables=['app01_usertype'])
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` , `app01_usertype`
+    """
+    return HttpResponse()
+```
+进行排序，与 **`models.UserInfo.objects.all().order_by('-age')`** 具有相同的功能：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().extra(order_by=['-age'])
+    print(result.query)
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo` 
+    ORDER BY `app01_userinfo`.`age` DESC
+    """
+    return HttpResponse()
+```
+如果在 extra 中使用了 order_by 参数，又在 extra 之外使用了 order_by('-age')，如
+```python
+models.UserInfo.objects.all().extra(order_by=['-age']).order_by('-age')
+```
+或
+```python
+models.UserInfo.objects.all().order_by('-age').extra(order_by=['-age'])
+```
+哪个在后面哪个就生效，其它 extra 中的参数也是一样。
+
+extra 的综合应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().extra(
+        select={
+            'm': 'select count(1) from app01_usertype where id>%s and id<%s',
+            'n': 'select count(1) from app01_usertype where id>%s and id<%s'
+        },
+        select_params=[1, 2, 3, 4],
+        where=['age>%s'],
+        params=[18, ],
+        order_by=['-age'],
+        tables=['app01_usertype']
+    )
+    """
+    print(result.query)
+    SELECT 
+        (select count(1) from app01_usertype where id>1 and id<2) AS `m`, 
+        (select count(1) from app01_usertype where id>3 and id<4) AS `n`, 
+        `app01_userinfo`.`id`, 
+        `app01_userinfo`.`name`, 
+        `app01_userinfo`.`age`, 
+        `app01_userinfo`.`ut_id` 
+        FROM `app01_userinfo` , `app01_usertype` 
+        WHERE (age>18) 
+        ORDER BY `app01_userinfo`.`age` DESC
+    """
+    return HttpResponse()
+```
+
+( 11 ) distinct
+用于去重，使用参考：
+```python
+def distinct(self, *field_names):
+	pass
+```
+应用：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().values('id','name').distinct()
+    """
+    print(result.query)
+    SELECT DISTINCT `app01_userinfo`.`id`, `app01_userinfo`.`name` 
+    FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+如果是 PostgreSQL 数据库使用方式：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.distinct('id','name')
+    """
+    print(result.query)
+    SELECT DISTINCT `app01_userinfo`.`id`, `app01_userinfo`.`name` 
+    FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+
+( 12 ) select_related
+与性能相关，表之间进行 join 连表操作，一次性获取关联数据：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    result = models.UserInfo.objects.all().select_related()
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id`, `app01_usertype`.`id`, `app01_usertype`.`title` 
+        FROM `app01_userinfo`
+        INNER JOIN `app01_usertype`
+        ON (`app01_userinfo`.`ut_id` = `app01_usertype`.`id`)
+    """
+    return HttpResponse()
+```
+( 13 ) prefetch_related
+性能相关，多表连表操作时速度会慢，使用其执行多次 SQL 查询在 Python 代码中实现连表操作：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+
+def user_list(request):
+    # result = models.UserInfo.objects.all().prefetch_related()
+    # 加不加外键都是同样的结果
+    result = models.UserInfo.objects.all().prefetch_related('ut_id')
+    """
+    print(result.query)
+    SELECT `app01_userinfo`.`id`, `app01_userinfo`.`name`, `app01_userinfo`.`age`, `app01_userinfo`.`ut_id` 
+    FROM `app01_userinfo`
+    """
+    return HttpResponse()
+```
+
+( 14 ) 原生sql
+ORM 可以解决绝大多数查询，但是可能解决不了非常复杂的请求。这个时候只能使用原生 sql 了，Django 中使用原生sql 的方式：
+```python
+from django.shortcuts import HttpResponse
+from app01 import models
+from django.db import connection, connections
+
+def user_list(request):
+    try:
+        # cursor = connection.cursor()  # connections['default'].cursor()
+        cursor = connections['mysql'].cursor()
+        cursor.execute("""select *from app01_userinfo where id >= 2 and id <= 4""")
+        # row = cursor.fetchone()#(2, 'Thanlon', 23, 1)
+        row = cursor.fetchall()  # (((2, 'Thanlon', 33, 1), (3, 'Kiku', 36, 2), (4, 'lili', 33, 1))
+        print(row)
+    except Exception as e:
+        print(e)
+    return HttpResponse()
+```
+**`settings.py:`**
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'mysql': {
+		'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_test',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    }
+}
+```
+<hr>
+
+##### 10. ORM提高性能的操作
+( 1 ) 把 MODEL 转换为迭代器去执行
+```python
+Article.objects.all(),iterator()
+```
+( 2 ) only 获取字段等同于 values 和 values_list，但是使用 only 这种方式不会一下获取全部数据
+```python
+Article.objects.only('FIELD1','FIELD2','')
+```
+( 3 ) 如果要用于判断某个条件的数据是否存在，建议使用 exists，这比使用 count 或者直接判断 QuerySet 更加高效
+
+使用 exists：
+```python
+if Article.objects.filter(title='xxx').exists():
+    print(True)
+```
+使用 count：
+```python
+if Article.objects.filter(title='xxx').count()>0:
+    print(True)
+```
+直接判断 QuerySet：
+```python
+if Article.objects.filter(title='xxx'):
+    print(True)
+```
+<hr>
+
+##### 11. 查询过滤综合
+( 1 ) 返回查询集
+
+<kbd>filter()</kbd>：条件满足的查询集合
+
+<kbd>order_by()</kbd>：排序的集合
+
+<kbd>values()</kbd>：一个对象构成一个字典，然后构成一个列表返回。相当于 json 数据，很方便使用
+
+限制查询集：返回的查询集支持切片操作，但是不支持负索引
+
+( 2 ) 返回单个值
+
+<kbd>get()</kbd>：返回单个满足条件的对象，如果未找到会引发 “模型类.DoesNotExist” 异常
+
+<kbd>count()</kbd>：返回当前查询的总条数
+
+<kbd>first()</kbd>：返回第一个对象
+
+<kbd>last()</kbd>：返回最后一个对象
+
+<kbd>exists()</kbd>：判断查询集中是否有数据，如果有返回 True, 否则返回 False
+
+<hr>
+
+##### 12. 格式化参数
+( 1 ) slice：切片操作，返回列表
+```djangotemplate
+{{ [1,2,3] | slice:':2' }}  # [1,2]
+```
+( 2 ) slugify：在字符串中留下减号和下划线。其它符号删除，空格用减号替换
+```djangotemplate
+{{'1-2=3and4 5=6' | slugify}} # 5-23and4-56
+```
+( 3 ) stringformat：字符串格式化，语法同 Python
+```djangotemplate
+1 | stringformat:"i" # '1'
+```
+( 4 ) time：返回日期的时间部分
+
+( 5 ) timesince：到现在为止过长时间。结果可能是 45day、3hours
+
+( 6 ) timeuntil：给定日期到现在过去了多少时间
+
+( 7 ) lower：大写字母转换成小写
+
 <hr>
 
 #### Django的CBV使用
@@ -3159,7 +3876,7 @@ class Login(View):
 <hr>
 
 ##### 1. 后台分页逻辑
-```py
+```python
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def student(request):
@@ -3177,7 +3894,7 @@ def student(request):
     pagenator.per_page：每页显示的条目数量
     pagenator.count：数据总个数
     pagenator.num_pages：总页数
-    pagenator.page_range：总页数的索引范围，如(1,10)
+    pagenator.page_range：页码列表，总页数的索引范围，如(1,10)
     """
     # 获取传入的页码
     current_page = request.GET.get('page')
@@ -3195,7 +3912,9 @@ def student(request):
 	posts.number:当前页
 	posts.paginator：paginator对象
 	"""
-    # 如果传入的页码不是int类型，如传入的是/student.html/?page=abc
+    # PageNotAnInteger：如果传入的页码不是整数的值时会抛出异常，如传入的是/student.html/?page=abc
+    # InvalidPage：当向page()传入一个无效的页码时抛出
+    # EmptyPage：当向page()提供一个有效值但是那个页面上没有任何对象时抛出
     except EmptyPage as e:
         posts = pagenator.page(1)  # 如果传入的页码是空页，则默认显示第一页，如传入的是/student.html/?page=-10
     return render(request, 'student.html', {'posts': posts})
@@ -5332,6 +6051,28 @@ def test(request):
 ```
 <hr>
 
+#### Django缓存
+<hr>
+
+##### 1. Django缓存
+由于 Django 是动态网站，所以每次请求都会去数据库进行相应的操作。当程序访问量大时，耗时必然会更加明显，最简单解决方式是使用缓存。缓存将 views
+的返回值保存至内存或者 Memcache、redis 等内存数据库中，几分钟内再有人访问时，则不再去执行 views 中的操作，直接获取缓存的内容，并返回。Django
+提供了六种缓存方式：
+
+( 1 ) 开发调试
+
+( 2 ) 内存
+
+( 3 ) 文件
+
+( 4 ) 数据库
+
+( 5 ) Memcache缓存 ( memcached 模块 )
+
+( 6 ) Memcache缓存 ( pylibmc 模块)
+
+<hr>
+
 #### API接口开发
 <hr>
 
@@ -5598,59 +6339,6 @@ Postman 向后台发送添加数据的 <font>DELETE请求</font>，返回的状�
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061922383547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70)
 
-#### Django扩展
-<hr>
-
-##### 1. ORM提高性能的操作
-( 1 ) 把 MODEL 转换为迭代器去执行
-```python
-Article.objects.all(),iterator()
-```
-( 2 ) only 获取字段等同于 values 和 values_list，但是使用 only 这种方式不会一下获取全部数据
-```python
-Article.objects.only('FIELD1','FIELD2','')
-```
-( 3 ) 如果要用于判断某个条件的数据是否存在，建议使用 exists，这比使用 count 或者直接判断 QuerySet 更加高效
-
-使用exists：
-```python
-if Article.objects.filter(title='xxx').exists():
-    print(True)
-```
-使用count：
-```python
-if Article.objects.filter(title='xxx').count()>0:
-    print(True)
-```
-直接判断QuerySet：
-```python
-if Article.objects.filter(title='xxx'):
-    print(True)
-```
-<hr>
-
-##### 2. Django缓存
-由于 Django 是动态网站，所以每次请求都会去数据库进行相应的操作。当程序访问量大时，耗时必然会更加明显，最简单解决方式是使用缓存。缓存将 views
-的返回值保存至内存或者 Memcache、redis 等内存数据库中，几分钟内再有人访问时，则不再去执行 views 中的操作，直接获取缓存的内容，并返回。Django
-提供了六种缓存方式：
-
-( 1 ) 开发调试
-
-( 2 ) 内存
-
-( 3 ) 文件
-
-( 4 ) 数据库
-
-( 5 ) Memcache缓存 ( memcached 模块 )
-
-( 6 ) Memcache缓存 ( pylibmc 模块)
-
-<hr>
-
-##### 3. Django自带的sqlite数据库不支持锁机制
-
-<hr>
 
 <hr>
 <div style="width: 60px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 0px" id="plug-ins">
