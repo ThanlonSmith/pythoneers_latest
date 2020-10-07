@@ -209,7 +209,75 @@ $ sudo docker run -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter
 
 <hr>
 
+##### 4. CUDA的安装
+CUDA：[**https://developer.nvidia.com/cuda-toolkit**](https://developer.nvidia.com/cuda-toolkit)
 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200828145319154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#pic_left)
+
+选择平台，不同的平台有不同安装步骤：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200828150008310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#pic_center)
+
+根据下面的命令安装就可以了：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200828150001298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#pic_center)
+```python
+$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+$ sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+$ wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda-repo-ubuntu2004-11-0-local_11.0.3-450.51.06-1_amd64.deb
+$ sudo dpkg -i cuda-repo-ubuntu2004-11-0-local_11.0.3-450.51.06-1_amd64.deb
+$ sudo apt-key add /var/cuda-repo-ubuntu2004-11-0-local/7fa2af80.pub
+$ sudo apt-get update
+$ sudo apt-get -y install cuda
+```
+CUDA 默认是被安装到 /usr/local/ 下，可以查看 CUDA 版本：
+```python
+$ cd /usr/local/cuda
+$ cat version.txt 
+CUDA Version 11.0.228
+```
+<hr>
+
+##### 5. cuDNN的安装
+cuDNN：[**https://developer.nvidia.com/cudnn**](https://developer.nvidia.com/cudnn)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200828145648541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#pic_left)
+
+需要登录才能进入下载页面，还需要填写调查问卷！最后才进入下载页面 [**https://developer.nvidia.com/rdp/cudnn-download**](https://developer.nvidia.com/rdp/cudnn-download)：
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200828151940346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#pic_left)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200828152856729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#pic_left)
+
+复制链接使用命令下载：
+```python
+$ wget https://developer.download.nvidia.cn/compute/machine-learning/cudnn/secure/8.0.2.39/11.0_20200724/cudnn-11.0-linux-x64-v8.0.2.39.tgz
+```
+解压缩：
+```python
+$ tar zxvf cudnn-11.0-linux-x64-v8.0.2.39.tgz
+```
+解压缩之后会得到 cuda 文件夹，接着执行下面的操作：
+```python
+$ sudo cp cuda/include/cudnn.h /usr/local/cuda/include/
+$ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64/
+$ sudo chmod a+r /usr/local/cuda/include/cudnn.h
+$ sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
+```
+查看版本号：
+```python
+$ cat cuda/include/cudnn_version.h |grep ^#
+#ifndef CUDNN_VERSION_H_
+#define CUDNN_VERSION_H_
+#define CUDNN_MAJOR 8
+#define CUDNN_MINOR 0
+#define CUDNN_PATCHLEVEL 2
+#define CUDNN_VERSION (CUDNN_MAJOR * 1000 + CUDNN_MINOR * 100 + CUDNN_PATCHLEVEL)
+#endif /* CUDNN_VERSION_H */
+```
+版本是 v8.0.2！
+
+<hr>
 
 <div style="width: 60px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 0px" id="plug-ins">
     <div style="position: relative;float: right">
