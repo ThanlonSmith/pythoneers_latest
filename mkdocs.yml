@@ -1,9 +1,9 @@
 site_name: PYTHONEERS
 # 设置站点的规范URL。这将添加带有规范URL的链接标记到生成的HTML标头。
-site_url: http://pythoneers.cn
+site_url: https://pythoneers.cn
 site_author: Erics
 # 站点描述
-site_description: 'PYTHONEERS是专为以Python为首要编程语言的，计划从事或已经从事Python工作的工程师、技术专家、科研人员，以及对Python感兴趣的任何人群免费提供文档学习、知识共享的平台。PYTHONEERS将永久致力于维护国内Python生态环境的发展。'
+site_description: 'PYTHONEERS是一个专为以Python为首要编程语言、计划或已经从事Python工作的工程师，以及Python感兴趣的任何人群免费提供文档学习、资料共享的平台。'
 #copyright: docs.xiaolangren.cn
 site_dir: site
 docs_dir: 'docs'
