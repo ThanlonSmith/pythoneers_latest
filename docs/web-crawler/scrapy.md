@@ -1325,7 +1325,7 @@ if __name__ == '__main__':
 ```
 
 <hr>
-<div style="width: 60px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 0px" id="plug-ins">
+<div style="width: 60px;height: auto;z-index: 100;bottom: 30%;position: fixed;right: 0px" id="plug-ins">
     <div style="position: relative;float: right">
         <a target="" href="javascript:;" id="weibo"
            style="display: block;width: 40px;height: 40px;background-color: #c4351b;margin-top: 1px;">
@@ -1351,7 +1351,24 @@ if __name__ == '__main__':
 <div style="width: auto;height: auto;z-index: 99;position: fixed;left: 0;bottom: 0;" id="support_us" hidden="hidden">
         <div id="alipei_and_wechat">
             <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
-            <img class="img-responsive" width="180px" height="" src="../img/public/33659FBDE4AF3F7A005E17D9BA173D04.jpg" alt="..."><br>
-            <img class="img-responsive" width="180px" height="" src="../img/public/B37F6EA6DF3F4C1CA0A65C0E80AE131E.jpg" alt="...">
+            您的赞助是我不懈的动力！<br>
+            <img class="img-responsive" width="180" height="" src="../img/public/33659FBDE4AF3F7A005E17D9BA173D04.jpg" alt="..."><br>
+            <img class="img-responsive" width="180" height="" src="../img/public/B37F6EA6DF3F4C1CA0A65C0E80AE131E.jpg" alt="...">
+        </div>
+</div>
+<div style="width: auto;height: auto;z-index: 99;position: fixed;right: 0;top: 70px;" id="google_ads">
+        <div>
+            <div style="width: 180px;height: auto"></div>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Vertical -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6937898095875663"
+                 data-ad-slot="2927491642"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 </div>

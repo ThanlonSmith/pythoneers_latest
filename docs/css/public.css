@@ -156,4 +156,8 @@ blockquote {
     background-color: #eef0f4;
     border-left: 8px solid #dddfe4;
 }
+
 /**! blockquote */
+footer {
+    background-color: #2c2c2c;
+}
