@@ -135,18 +135,6 @@ p {
     padding-bottom: 15px;
 }
 
-/*支付宝、微信支持*/
-#alipei_and_wechat > img {
-    margin: 0;
-}
-
-#alipei_and_wechat > button.close {
-    position: absolute;
-    right: 4px;
-}
-
-/*！支付宝、微信支持*/
-
 /** blockquote */
 blockquote {
     padding: 10px 20px;

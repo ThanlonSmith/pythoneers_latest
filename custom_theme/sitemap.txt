@@ -1,4 +1,5 @@
 http://pythoneers.cn
+http://pythoneers.cn/index.html
 http://pythoneers.cn/python/python-basis.html
 http://pythoneers.cn/python/python-advance.html
 http://pythoneers.cn/python/python-senior.html

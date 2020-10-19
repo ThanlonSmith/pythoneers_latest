@@ -418,13 +418,21 @@ def test(request):
         </a>
     </div>
 </div>
-<div style="width: auto;height: auto;z-index: 99;position: fixed;left: 0;bottom: 0;" id="support_us" hidden="hidden">
-        <div id="alipei_and_wechat">
-            <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
-            <img class="img-responsive" width="180px" height="" src="../img/public/33659FBDE4AF3F7A005E17D9BA173D04.jpg" alt="..."><br>
-            <img class="img-responsive" width="180px" height="" src="../img/public/B37F6EA6DF3F4C1CA0A65C0E80AE131E.jpg" alt="...">
+<!--双11 start-->
+<div style="z-index: 100;position: fixed;left: 0;bottom: 0;" id="ads" hidden="hidden">
+        <div>
+            <button type="button" class="close" style="position: absolute;right: 5px;top: 0;font-size: 28px;opacity: 1;color: white"><span aria-hidden="true">&times;</span></button>
+             <a target="_blank" href="https://s.click.taobao.com/1pElJvu">
+                <img style="margin: 0;border-radius: unset" class="img-responsive" width="400" height="" src="img/ads/tianmap-800x450-1.jpg"
+                    alt="2020天猫双11—联盟主会场（带超级红包）" title="2020天猫双11—联盟主会场（带超级红包）">
+            </a><br>
+            <a target="_blank" href="https://s.click.taobao.com/5EtkJvu">
+                <img style="margin: 0;border-radius: unset" class="img-responsive" width="400" height="" src="img/ads/tianmap-800x450-2.jpg"
+                    alt="2020天猫双11—联盟主会场（带超级红包）" title="2020天猫双11—联盟主会场（带超级红包）">
+            </a>
         </div>
 </div>
+<!--双11 stop-->
 <div style="width: auto;height: auto;z-index: 99;position: fixed;right: 0;top: 70px;" id="google_ads">
         <div>
             <div style="width: 180px;height: auto"></div>
