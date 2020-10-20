@@ -1067,10 +1067,10 @@ ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufu
         </div>
 </div>
 <!--双11 stop-->
+<!--右侧广告 start-->
 <div style="width: auto;height: auto;z-index: 99;position: fixed;right: 0;top: 70px;" id="google_ads">
         <div>
             <div style="width: 180px;height: auto"></div>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Vertical -->
             <ins class="adsbygoogle"
                  style="display:block"
@@ -1078,24 +1078,6 @@ ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufu
                  data-ad-slot="2927491642"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
 </div>
-<div style="width: auto;height: auto;z-index: 99;position: fixed;left: 0;top: 70px;" id="google_ads">
-        <div>
-            <div style="width: 180px;height: auto"></div>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Vertical -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-6937898095875663"
-                 data-ad-slot="2927491642"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-</div>
+<!--右侧广告 stop-->
