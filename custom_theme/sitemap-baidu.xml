@@ -2,187 +2,187 @@
 <urlset>
     <url>
      <loc>http://pythoneers.cn/python/python-basis.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/python-advance.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/python-senior.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/module.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/algorithm.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/design-pattern.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/interviews-python.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/interviews-network.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>daily</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/leetcode-algorithm.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/leetcode-db.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>daily</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/leetcode-multithreading.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python/nowcoder-sword-offer.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/django.html</loc>
-     <lastmod>2020-09-28</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/drf.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/flask.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/celery.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/mysql.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/interviews-flask.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/interviews-django.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/interviews-mysql.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/interviews-redis.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/project-flask.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/python-web/project-django.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/gui/pyqt5.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/web-crawler/scrapy.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/data-analysis/numpy.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/data-analysis/pandas.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/data-analysis/matplotlib.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/computer-vision/opencv.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/machine-learning/quantitative-trading.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>
     <url>
      <loc>http://pythoneers.cn/deep-learning/tensorflow.html</loc>
-     <lastmod>2020-10-18</lastmod>
+     <lastmod>2020-10-30</lastmod>
      <changefreq>always</changefreq>
      <priority>1.0</priority >
     </url>

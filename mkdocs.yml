@@ -49,10 +49,10 @@ nav:
       #      - 算法基础: python/algorithm.md
       - Python面试题: python/interviews-python.md
       - 网络相关面试题: python/interviews-network.md
+      - 剑指Offer: python/nowcoder-sword-offer.md
       - Leetcode算法: python/leetcode-algorithm.md
       - Leetcode数据库: python/leetcode-db.md
       - Leetcode多线程: python/leetcode-multithreading.md
-      - 剑指Offer: python/nowcoder-sword-offer.md
   - Python Web:
       - Django: python-web/django.md
       - Django Rest Framework: python-web/drf.md
