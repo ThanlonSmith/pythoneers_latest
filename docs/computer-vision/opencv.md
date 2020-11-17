@@ -807,6 +807,9 @@ plt.show()
                  data-ad-slot="2927491642"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 </div>
 <!--左侧广告 stop-->
@@ -821,6 +824,9 @@ plt.show()
                  data-ad-slot="2927491642"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 </div>
 <!--右侧广告 stop-->
