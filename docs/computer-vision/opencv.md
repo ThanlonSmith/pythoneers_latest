@@ -771,6 +771,7 @@ plt.show()
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200902140008861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70#)
 <hr>
+<!--回到顶部 start-->
 <div style="width: 60px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 0px" id="plug-ins">
     <div style="position: relative;float: right">
         <a target="" href="javascript:;" id="weibo"
@@ -794,21 +795,21 @@ plt.show()
         </a>
     </div>
 </div>
-<!--双11 start-->
-<div style="z-index: 100;position: fixed;left: 0;bottom: 0;" id="ads" hidden="hidden">
+<!--回到顶部 start-->
+<!--左侧广告 start-->
+<div style="width: auto;height: auto;z-index: 99;position: fixed;left: 0;top: 70px;" id="google_ads">
         <div>
-            <button type="button" class="close" style="position: absolute;right: 5px;top: 0;font-size: 28px;opacity: 1;color: white"><span aria-hidden="true">&times;</span></button>
-             <a target="_blank" href="https://s.click.taobao.com/1pElJvu">
-                <img style="margin: 0;border-radius: unset" class="img-responsive" width="400" height="" src="img/ads/tianmap-800x450-1.jpg"
-                    alt="2020天猫双11—联盟主会场（带超级红包）" title="2020天猫双11—联盟主会场（带超级红包）">
-            </a><br>
-            <a target="_blank" href="https://s.click.taobao.com/5EtkJvu">
-                <img style="margin: 0;border-radius: unset" class="img-responsive" width="400" height="" src="img/ads/tianmap-800x450-2.jpg"
-                    alt="2020天猫双11—联盟主会场（带超级红包）" title="2020天猫双11—联盟主会场（带超级红包）">
-            </a>
+            <div style="width: 180px;height: auto"></div>
+            <!-- Vertical -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6937898095875663"
+                 data-ad-slot="2927491642"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
         </div>
 </div>
-<!--双11 stop-->
+<!--左侧广告 stop-->
 <!--右侧广告 start-->
 <div style="width: auto;height: auto;z-index: 99;position: fixed;right: 0;top: 70px;" id="google_ads">
         <div>

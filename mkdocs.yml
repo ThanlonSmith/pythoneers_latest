@@ -1,4 +1,6 @@
 site_name: Python开发栈
+#site_name: Python博客栈
+#site_name: Python开发栈-Python全栈开发-国内Python开发者网络社区
 # 设置站点的规范URL。这将添加带有规范URL的链接标记到生成的HTML标头。
 site_url: https://pythoneers.cn
 site_author: Erics
@@ -10,26 +12,17 @@ docs_dir: 'docs'
 extra_css:
   - css/nav.css
   - css/public.css
-#链接的样式
-use_directory_urls: false # 默认是true
+use_directory_urls: false
 extra_javascript:
   - js/main.js
   #  - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
-#  - js/busuanzi.pure.mini.js
+  #  - js/busuanzi.pure.mini.js
   - js/gotop.js
   - js/baiducount.js
-plugins: []
+plugins: [ ]
 #repo_url: https://github.com/example/repository/
 extra:
   version: 0.10.0
-#在每个页面上提供指向您的存储库（GitHub，Bitbucket，GitLab，...）的链接。
-repo_url: null
-#设置后，在每个页面上提供指向存储库的链接的名称。默认值： 'GitHub', 'Bitbucket' or 'GitLab'， 如果repo_url不能匹配这些域名，则使用来自repo_url的域名。
-repo_name: 'GitHub' # 默认
-remote_branch: gh-pages # 默认
-#当使用gh-deploy部署到Github Pages时，设置要推送到的远程名称。 可以通过gh-deploy中的命令行选项覆盖此选项。
-remote_name: origin
-dev_addr: '127.0.0.1:6001'
 #设置版权信息以包含在主题的文档中
 copyright: null
 #设置Google Analytics跟踪配置。
@@ -37,39 +30,37 @@ copyright: null
 nav:
   #  - 主页: index.md
   - Python:
-      - Python基础入门: python/python-basis.md
+      - Python基础: python/python-basis.md
       - Python进阶: python/python-advance.md
       - Python高级: python/python-senior.md
-#      - Python零碎知识点整理: python/python3-general-knowledge.md
-      - 内置模块与第三方模块: python/module.md
-      #      - 第三方模块: python/third-party.md
+      #      - Python零碎知识点整理: python/python3-general-knowledge.md
+      - Python内置模块: python/built-in-module.md
+      - Python第三方模块: python/external-module.md
       #      - 面试题题解: python/interview.md
-      - 数据结构与算法: python/algorithm.md
-      - 设计模式: python/design-pattern.md
+      - Python数据结构与算法: python/algorithm.md
+      - Python设计模式: python/design-pattern.md
+      - Python办公自动化: python/office-automation.md
       #      - 算法基础: python/algorithm.md
-      - Python面试题: python/interviews-python.md
-      - 网络相关面试题: python/interviews-network.md
-      - 剑指Offer: python/nowcoder-sword-offer.md
-      - Leetcode算法: python/leetcode-algorithm.md
-      - Leetcode数据库: python/leetcode-db.md
-      - Leetcode多线程: python/leetcode-multithreading.md
+      - Python核心知识: python/interviews-python.md
+      - Python网络相关知识: python/interviews-network.md
+      - 剑指Offer刷题: python/nowcoder-sword-offer.md
+      - Leetcode算法刷题: python/leetcode-algorithm.md
+      - Leetcode数据库刷题: python/leetcode-db.md
+      - Leetcode多线程刷题: python/leetcode-multithreading.md
   - Python Web:
-      - Django: python-web/django.md
-      - Django Rest Framework: python-web/drf.md
-      - Flask: python-web/flask.md
-      - Celery: python-web/celery.md
-      - MySQL: python-web/mysql.md
-      - Flask面试题: python-web/interviews-flask.md
-      - Django面试题:  python-web/interviews-django.md
-      - MySQL面试题: python-web/interviews-mysql.md
-      - Redis面试题: python-web/interviews-redis.md
-      - Flask项目实战: python-web/project-flask.md
-      - Django项目实战: python-web/project-django.md
-#      - 代码统计系统(Flask): python-web/codecount.md
-#      - 在线课程学习系统(Django): python-web/course-learn.md
-#      - 社会活动问卷调查系统(DRF+Vue): python-web/social-activities-questionnaire.md
-#      - 个人网站系统(DRF+Vue): python-web/my-site.md
-#      - 面试题题解: python-web/interview.md
+      - Flask基础: python-web/flask.md
+      - Flask核心知识: python-web/interviews-flask.md
+      - Flask实战篇: python-web/project-flask.md
+      - Django基础: python-web/django.md
+      - Django核心知识: python-web/interviews-django.md
+      - Django实战篇: python-web/project-django.md
+      - DRF基础: python-web/drf.md
+      - Celery异步框架: python-web/celery.md
+  #      - 代码统计系统(Flask): python-web/codecount.md
+  #      - 在线课程学习系统(Django): python-web/course-learn.md
+  #      - 社会活动问卷调查系统(DRF+Vue): python-web/social-activities-questionnaire.md
+  #      - 个人网站系统(DRF+Vue): python-web/my-site.md
+  #      - 面试题题解: python-web/interview.md
   - Python GUI:
       - PyQt5: gui/pyqt5.md
   - 网络爬虫:
@@ -84,7 +75,7 @@ nav:
   - 机器学习:
       #      - 机器学习中的数学: machine-learning/math.md
       #      - 机器学习中的算法: machine-learning/machine-learning-algorithm.md
-#      - Sklearn:
+      #      - Sklearn:
       - 机器学习与量化交易: machine-learning/quantitative-trading.md
 
   - 深度学习:
@@ -97,13 +88,13 @@ theme:
   name: mkdocs
   custom_dir: custom_theme
   # JavaScript库在代码块中突出显示源代码。 默认值：True。
-#  highlightjs: true
-#  hljs_languages:
-#      - yaml
-#      - rust
-#      - python
-#      - shell
-#      - shell script
+  #  highlightjs: true
+  #  hljs_languages:
+  #      - yaml
+  #      - rust
+  #      - python
+  #      - shell
+  #      - shell script
   shortcuts:
     help: 191    # ?
     next: 78     # n

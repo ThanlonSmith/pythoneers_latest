@@ -1,18 +1,15 @@
 {% extends "base.html" %}
-
+{% block htmltitle %}
+<title>Python开发栈 - Python全栈开发学习网</title>
+{% endblock %}
+{% block site_meta %}
+{{ super() }}
+<meta name="keywords"
+      content="python入门,python学习,python文档,python教程,python,django,flask,python web,python爬虫,python人工智能,python数据分析,python深度学习,python量化交易"/>
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
+<meta name="sogou_site_verification" content="atcH4bxi4f"/>
+{% endblock %}
 {% block footer %}
-<!--    <hr>-->
-<!--{% if config.copyright %}-->
-<!--<p>{{ config.copyright }}</p>-->
-<!--{% endif %}-->
-<!--以前的-->
-<!--<p>Copyright © 2020-2022 <a href="https://pythoneers.cn/">pythoneers.cn</a> All Rights Reserved.</p>-->
-<!--<p>-->
-<!--    <a href="https://beian.miit.gov.cn" target="_blank" style="color:#555;">豫ICP备19037971号-2</a><a target="_blank"></a>-->
-<!--    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279280889'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1279280889%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>-->
-<!--</p>-->
-<!--<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>-->
-<!--以前的/-->
 <div class="container-fluid" style="background:#2C2C2C;color: #c1c1c1;font-weight: bold;margin-bottom: 2px">
     <div class="row">
         <div class="col-md-12  text-center" style="padding: 40px">
@@ -95,12 +92,3 @@
 </script>
 {% endblock %}
 
-{% block site_meta %}
-{{ super() }}
-<!--sougou-->
-<meta name="keywords"
-      content="python入门,python学习,python文档,python教程,python,django,flask,python web,python爬虫,python人工智能,python数据分析,python深度学习,python量化交易"/>
-<meta http-equiv="Content-Type" content="text/html;charset=gb2312"/>
-<meta name="sogou_site_verification" content="atcH4bxi4f"/>
-<!--!sougou-->
-{% endblock %}

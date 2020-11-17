@@ -1,4 +1,4 @@
-![](../img/python-interview.jpg)
+m ![](../img/python-interview.jpg)
 #### Python面试题
 <hr>
 
@@ -1565,7 +1565,7 @@ __init__、__new__、__call__、__enter__、__exit__、__getitem__、__ setitem_
 <hr>
 
 ##### 138. __new__与__init__的区别
-__new__是一个静态方法，\_\_ init \_\_ 是一个实例方法。\_\_new\_\_ 方法会返回一个创建的实例，而__init__什么都不返回。只有在__new__返回一个类的实例时，后面的__init__才能被调用。当创建一个新实例时调用__new__，初始化一个实例时用__init__。
+\_\_new__是一个静态方法，\_\_ init \_\_ 是一个实例方法。\_\_new\_\_ 方法会返回一个创建的实例，而__init__什么都不返回。只有在__new__返回一个类的实例时，后面的__init__才能被调用。当创建一个新实例时调用__new__，初始化一个实例时用__init__。
 
 <hr>
 
@@ -2348,27 +2348,25 @@ def read_userinfo(path):
 
 content = read_userinfo('xxx.txt')
 ```
+##### 187. 查看一个类都有哪些方法
+使用内置的dir函数，可以传入类和类的实例(对象):
+```python
+dir(int)
+```
 <hr>
 
-##### 187. 文件增删改查的方法
-
+##### 188. 各种数据类型的底层
 
 <hr>
-
-
-##### 188. 谈你对面向对象的认识
-
-##### 189. 查看某个目录下所有文件夹
-<hr>
-
-<div style="width: 60px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 0px" id="plug-ins">
+<!--回到顶部 start-->
+<div style="width: 60px;height: auto;z-index: 99;bottom: 30%;position: fixed;right: 0" id="plug-ins">
     <div style="position: relative;float: right">
         <a target="" href="javascript:;" id="weibo"
            style="display: block;width: 40px;height: 40px;background-color: #c4351b;margin-top: 1px;">
             <img width="22" height="20" src="../img/weibo.png" alt=""
                  style="margin-top: 10px;margin-left: 9px">
         </a>
-       <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=5838160dbeb2a49f264d5e2d13d6336248d74a60cf56ecad" id="qq" style="display: block;width: 40px;height: 40px;background-color:#0e91e8;margin-top: 1px">
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3330447288&site=qq&menu=yes" id="qq" style="display: block;width: 40px;height: 40px;background-color:#0e91e8;margin-top: 1px">
             <img width="20" height="20" src="../img/qq.png" 
                  style="margin-top: 10px;margin-left: 10px" alt="点击这里给我发消息" title="点击这里给我发消息">
         </a>
@@ -2384,21 +2382,21 @@ content = read_userinfo('xxx.txt')
         </a>
     </div>
 </div>
-<!--双11 start-->
-<div style="z-index: 100;position: fixed;left: 0;bottom: 0;" id="ads" hidden="hidden">
+<!--回到顶部 stop-->
+<!--左侧广告 start-->
+<div style="width: auto;height: auto;z-index: 99;position: fixed;left: 0;top: 70px;" id="google_ads">
         <div>
-            <button type="button" class="close" style="position: absolute;right: 5px;top: 0;font-size: 28px;opacity: 1;color: white"><span aria-hidden="true">&times;</span></button>
-             <a target="_blank" href="https://s.click.taobao.com/1pElJvu">
-                <img style="margin: 0;border-radius: unset" class="img-responsive" width="400" height="" src="img/ads/tianmap-800x450-1.jpg"
-                    alt="2020天猫双11—联盟主会场（带超级红包）" title="2020天猫双11—联盟主会场（带超级红包）">
-            </a><br>
-            <a target="_blank" href="https://s.click.taobao.com/5EtkJvu">
-                <img style="margin: 0;border-radius: unset" class="img-responsive" width="400" height="" src="img/ads/tianmap-800x450-2.jpg"
-                    alt="2020天猫双11—联盟主会场（带超级红包）" title="2020天猫双11—联盟主会场（带超级红包）">
-            </a>
+            <div style="width: 180px;height: auto"></div>
+            <!-- Vertical -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6937898095875663"
+                 data-ad-slot="2927491642"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
         </div>
 </div>
-<!--双11 stop-->
+<!--左侧广告 stop-->
 <!--右侧广告 start-->
 <div style="width: auto;height: auto;z-index: 99;position: fixed;right: 0;top: 70px;" id="google_ads">
         <div>
